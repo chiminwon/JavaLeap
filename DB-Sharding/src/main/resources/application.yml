@@ -1,0 +1,33 @@
+server:
+  port: 8004
+
+spring:
+  datasource:
+    #    url: jdbc:mysql://localhost:3306/test
+    master:
+      url: jdbc:mysql://192.168.179.128:3339/test
+      username: root
+      password: chimeanwon
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    slave:
+      url: jdbc:mysql://192.168.179.128:3340/test
+      username: root
+      password: chimeanwon
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+info:
+  app:
+    name: spring-boot-actuator
+    version: 1.0.0
+    test: test
+
+management:
+  endpoint:
+    web:
+      exposure:
+        include: beans,trace
+    health:
+      show-details: always
+#management.endpoints.web.base-path=/monitor
+    shutdown:
+      enabled: true
