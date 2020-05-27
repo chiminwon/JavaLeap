@@ -7,6 +7,7 @@ public class MyRoutingDataSource extends AbstractRoutingDataSource {
     public static final String MASTER = "master";
     public static final String SLAVE = "slave";
 
+    // 解决并发问题
     private static final ThreadLocal<String> DB_HOLDER = new ThreadLocal<>();
 
     public static void setMaster() {
