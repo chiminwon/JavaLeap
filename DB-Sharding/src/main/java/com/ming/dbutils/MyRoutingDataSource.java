@@ -4,17 +4,17 @@ import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
 public class MyRoutingDataSource extends AbstractRoutingDataSource {
 
-    public final static String MASTER = "master";
-    public final static String SLAVE = "slave";
+    public static final String MASTER = "master";
+    public static final String SLAVE = "slave";
 
-    private final static ThreadLocal<String> DB_HOLDER = new ThreadLocal<>();
+    private static final ThreadLocal<String> DB_HOLDER = new ThreadLocal<>();
 
-    public static void setMaster(){
+    public static void setMaster() {
         DB_HOLDER.set(MASTER);
         System.out.println("Switch to Master DB!");
     }
 
-    public static void setSlave(){
+    public static void setSlave() {
         DB_HOLDER.set(SLAVE);
         System.out.println("Switch to Slave DB!");
     }

@@ -1,5 +1,6 @@
 package com.ming.config;
 
+import com.ming.dbutils.MyRoutingDataSource;
 import com.ming.dbutils.OtherRoutingDataSource;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -15,28 +16,41 @@ import static org.springframework.boot.jdbc.DataSourceBuilder.create;
 @Configuration
 public class DataSourceConfig {
 
-  @Bean
-  @ConfigurationProperties("spring.datasource.master")
-  public DataSource masterDataSource() {
-    return create().build();
-  }
+    @Bean
+    @ConfigurationProperties("spring.datasource.master")
+    public DataSource masterDataSource() {
+        return create().build();
+    }
 
-  @Bean
-  @ConfigurationProperties("spring.datasource.slave")
-  public DataSource slaveDataSource() {
-    return create().build();
-  }
+    @Bean
+    @ConfigurationProperties("spring.datasource.slave")
+    public DataSource slaveDataSource() {
+        return create().build();
+    }
 
-  @Bean
-  public DataSource otherDataSource(
-      @Qualifier("masterDataSource") DataSource masterDataSource,
-      @Qualifier("slaveDataSource") DataSource slaveDataSource) {
-      Map<Object, Object> targetDataSource = new HashMap<>();
-      targetDataSource.put(OtherRoutingDataSource.MASTER, masterDataSource);
-      targetDataSource.put(OtherRoutingDataSource.SLAVE, slaveDataSource);
-      OtherRoutingDataSource otherRoutingDataSource = new OtherRoutingDataSource();
-      otherRoutingDataSource.setTargetDataSources(targetDataSource);
-      otherRoutingDataSource.setDefaultTargetDataSource(masterDataSource);
-      return null;
-  }
+//    @Bean
+//    public DataSource otherDataSource(
+//            @Qualifier("masterDataSource") DataSource masterDataSource,
+//            @Qualifier("slaveDataSource") DataSource slaveDataSource) {
+//        Map<Object, Object> targetDataSource = new HashMap<>();
+//        targetDataSource.put(OtherRoutingDataSource.MASTER, masterDataSource);
+//        targetDataSource.put(OtherRoutingDataSource.SLAVE, slaveDataSource);
+//        OtherRoutingDataSource otherRoutingDataSource = new OtherRoutingDataSource();
+//        otherRoutingDataSource.setTargetDataSources(targetDataSource);
+//        otherRoutingDataSource.setDefaultTargetDataSource(masterDataSource);
+//        return otherRoutingDataSource;
+//    }
+
+    @Bean
+    public DataSource myRoutingDataSource(
+            @Qualifier("masterDataSource") DataSource masterDataSource,
+            @Qualifier("slaveDataSource") DataSource slaveDataSource) {
+        Map<Object, Object> targetDataSource = new HashMap<>();
+        targetDataSource.put(MyRoutingDataSource.MASTER, masterDataSource);
+        targetDataSource.put(MyRoutingDataSource.SLAVE, slaveDataSource);
+        MyRoutingDataSource myRoutingDataSource = new MyRoutingDataSource();
+        myRoutingDataSource.setTargetDataSources(targetDataSource);
+        myRoutingDataSource.setDefaultTargetDataSource(masterDataSource);
+        return myRoutingDataSource;
+    }
 }
