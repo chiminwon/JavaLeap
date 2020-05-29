@@ -27,7 +27,8 @@ public class UserService {
 
     @Master
     public Integer addUser(User user) {
-        return userMapper.addUser(user);
+        Integer code = userMapper.addUser(user);
+        return user.getId();
     }
 
     @Master
