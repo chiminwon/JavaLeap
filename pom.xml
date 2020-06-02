@@ -21,6 +21,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>DB-Sharding</module>
+        <module>ElasticSearch</module>
         <module>dubbo</module>
     </modules>
 

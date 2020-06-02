@@ -1,7 +1,6 @@
 package com.ming.config;
 
 import com.ming.dbutils.MyRoutingDataSource;
-import com.ming.dbutils.OtherRoutingDataSource;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;

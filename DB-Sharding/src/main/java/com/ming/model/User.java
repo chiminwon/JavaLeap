@@ -10,7 +10,7 @@ import lombok.Data;
 @ApiModel
 public class User {
     @ApiModelProperty(value = "用户Id")
-    private Long id;
+    private Integer id;
     @ApiModelProperty(value = "用户名")
     private String username;
     @ApiModelProperty(value = "用户地址")

@@ -1,7 +1,5 @@
 package com.ming.mapper;
 
-import com.ming.anotation.Master;
-import com.ming.anotation.Slave;
 import com.ming.model.User;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
@@ -20,7 +18,7 @@ public interface UserMapper {
             @Result(property = "address", column = "a")
     })
     @Select("select username as u, address as a, id as id from user where id = #{id}")
-    User getUserById(Long id);
+    User getUserById(Integer id);
 
     @Select("select * from user where username like concat('%',#{name},'%')")
     List<User> getUsersByName(String name);

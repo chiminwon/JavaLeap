@@ -21,13 +21,14 @@ public class UserService {
         return userMapper.getAllUsers();
     }
 
-    public User getUserById(Long id) {
+    public User getUserById(Integer id) {
         return userMapper.getUserById(id);
     }
 
     @Master
     public Integer addUser(User user) {
-        return userMapper.addUser(user);
+        Integer code = userMapper.addUser(user);
+        return user.getId();
     }
 
     @Master

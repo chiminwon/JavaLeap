@@ -1,11 +1,12 @@
 package com.ming.controller;
 
-import com.ming.anotation.Slave;
 import com.ming.model.User;
 import com.ming.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,13 +29,16 @@ public class UserController {
     @GetMapping(value = "/getUserById/{id}")
     @ApiOperation("根据id查找用户接口")
     @ApiImplicitParam(name = "id", value = "用户id", defaultValue = "1", required = true)
-    public User getUserById(@RequestParam(value = "id", required = true) Long id) {
+    public User getUserById(@RequestParam(value = "id", required = true) Integer id) {
         return userService.getUserById(id);
     }
 
     @PostMapping(value = "/addUser")
     @ApiOperation("增加用户接口")
-    //@ApiImplicitParam(name = "id", value = "用户id", defaultValue = "1", required = true)
+//    @ApiImplicitParams({
+//            @ApiImplicitParam(name = "username", value = "用户名", required = true),
+//            @ApiImplicitParam(name = "address", value = "用户地址", required = true)
+//    })
     public Integer addUser(@RequestBody User user) {
         return userService.addUser(user);
     }
