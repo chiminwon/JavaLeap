@@ -23,12 +23,13 @@ public interface UserMapper {
     @Select("select * from user where username like concat('%',#{name},'%')")
     List<User> getUsersByName(String name);
 
-    @Insert({"insert into user(username, address) values (#{username},#{address})"})
     @SelectKey(
-            statement = "select last_insert_id()",
+            statement = "select LAST_INSERT_ID()",
             keyProperty = "id",
             before = false,
             resultType = Integer.class)
+    @Options(keyColumn = "id", useGeneratedKeys = true)
+    @Insert({"insert into user(username, address) values (#{username},#{address})"})
     Integer addUser(User user);
 
     @Update("update user set username=#{username},address=#{address} where id=#{id}")

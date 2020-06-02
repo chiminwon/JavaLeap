@@ -21,6 +21,7 @@ public class UserService {
         return userMapper.getAllUsers();
     }
 
+    @Slave
     public User getUserById(Integer id) {
         return userMapper.getUserById(id);
     }
