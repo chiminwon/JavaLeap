@@ -19,6 +19,7 @@
         <module>DB-Sharding</module>
         <module>ElasticSearch</module>
         <module>performance</module>
+        <module>lock</module>
     </modules>
 
 
