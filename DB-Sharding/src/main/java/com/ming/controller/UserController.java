@@ -29,7 +29,7 @@ public class UserController {
     @GetMapping(value = "/getUserById/{id}")
     @ApiOperation("根据id查找用户接口")
     @ApiImplicitParam(name = "id", value = "用户id", defaultValue = "1", required = true)
-    public User getUserById(@RequestParam(value = "id", required = true) Integer id) {
+    public User getUserById(@PathVariable(value = "id", required = false) Integer id) {
         return userService.getUserById(id);
     }
 

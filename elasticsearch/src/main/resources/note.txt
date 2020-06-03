@@ -1,0 +1,15 @@
+// intall tutorial
+https://www.cnblogs.com/jianxuanbing/p/9410800.html
+docker pull elasticsearch:6.6.1
+docker run -p 9200:9200 -p 9300:9300 --name es6.6.1 -e "discovery.type=single-node" elasticsearch:6.6.1
+
+sudo firewall-cmd --zone=public --add-port=9300/tcp --permanent
+sudo firewall-cmd --reload
+
+docker pull mobz/elasticsearch-head:5
+docker run -d --name esh -p 9100:9100 mobz/elasticsearch-head:5
+
+esh url:
+http://192.168.171.131:9100/
+es url:
+http://192.168.171.131:9200/
